@@ -1,0 +1,5 @@
+g++ "c:\Users\dk128\OneDrive\Desktop\DSA\Basics\ticToeGame.cpp" -o "c:\Users\dk128\OneDrive\Desktop\DSA\Basics\ticToeGame" && "c:\Users\dk128\OneDrive\Desktop\DSA\Basics\ticToeGame"
+
+ cd "/c/Users/dk128/OneDrive/Desktop/DSA/Basics"
+g++ frequencyCounter.cpp -o frequencyCounter
+./frequencyCounter
