@@ -14,21 +14,72 @@ vector<int> findUnionOptimised(vector<int> &a1, vector<int> &a2);
 void findIntersectionBruteApproach(vector<int>& a1, vector<int>& a2);
 void findIntersectionOpt(vector<int>& a1, vector<int>& a2);
 
+int findUnknowNumber(vector<int> arr, int n);
+
 int main() {
   vector<int> v1 = {1,1,1,2,2,3,4};
   vector<int> v2 = {1,2,2,2,4,6,10,11};
+  vector<int> v3 = {1,5,4,3};
+  int numbers = 5;
 
   // findUnion(v1,v2);
-  vector<int> ans = findUnionOptimised(v1, v2);
+  // vector<int> ans = findUnionOptimised(v1, v2);
 
-  cout << endl;
-  for(int it: ans){
-    cout << it << "\t";
-  }
+  // cout << endl;
+  // for(int it: ans){
+  //   cout << it << "\t";
+  // }
 
-  cout<< endl;
+  // cout<< endl;
   // findIntersectionOpt(v1, v2);
+  cout << findUnknowNumber(v3, numbers);
   return 0;
+}
+
+int findUnknowNumber(vector<int> arr, int n){
+  // brute force
+    // for(int i = 0; i< n; i++){
+    //   int flag = 0;
+    //   for(int j = 0; j < n-1; j++){
+    //     if(arr[j] == i){
+    //       flag = 1;
+    //       break;
+    //     }
+    //   }
+    //   if(flag == 0) return i;
+    // }
+
+  // better approach
+    // vector<int> vis(0, n);
+
+    // for(int i = 0; i < n; i++){
+    //    vis[arr[i]] = 1;
+    // }
+
+    // for(int i = 1; i < n; i++){
+    //    if(vis[i] == 0) return i;
+    // }
+
+  // optimal-1: using sum method
+    int sum = n * (n + 1) / 2;
+    int sumOfArr = 0;
+    for(int i = 0; i< n-1; i++){
+      sumOfArr += arr[i];
+    }
+    
+    return sum - sumOfArr;
+  
+  // optimal-2: xor method
+    // int xor1 = 0, xor2 = 0;
+
+    // for(int i = 1; i <= n; i++){
+    //   xor1 ^= i;
+    // }
+    // for(int i = 0; i < n-1; i++){
+    //   xor2 ^= arr[i];
+    // }
+
+    // return xor1 ^ xor2; 
 }
 
 void findIntersectionOpt(vector<int>& a1, vector<int>& a2){
