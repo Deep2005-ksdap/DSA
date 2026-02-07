@@ -12,13 +12,35 @@ int main(){
   vector<int> arr = {10, 5, 2, 7, 1, 9};
   int k = 15;
 
-  cout << subArrayWithSumK_Brute(arr, k);
+  cout << subArrayWithSumK_Brute(arr, k) << endl;
+  cout << subArrayWithSumK_Optimal(arr, k);
   return 0;
 }
 
 int subArrayWithSumK_Optimal(vector<int> arr, int k){
    // sliding windows concept
+   int n = arr.size();
    
+   int start = 0, end = 0;
+   int arrlength = 0;
+   int sum = arr[0];
+   
+   while(end < n){
+
+    while(start <= end && sum > k){
+      sum -= arr[start];
+      start++;
+    }
+
+    if(sum == k){
+      arrlength = max(arrlength, end - start + 1);
+    }
+
+    end++;
+    if(end < n) sum += arr[end];
+   }
+
+   return arrlength;
 }
 
 int subArrayWithSumK_Brute(vector<int> arr, int k){
