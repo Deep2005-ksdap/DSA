@@ -4,6 +4,50 @@
 
 using namespace std;
 
+class paintersProblem{
+  public:
+    int sol(vector<int>& arr, int k){
+      int n = arr.size();
+
+      int i = *max_element(arr.begin(), arr.end());
+      int j = 0;
+      for(auto it: arr){
+        j += it;
+      }
+
+      int ans = 0;
+      while(i <= j){
+        int mid = i + (j - i)/2;
+
+        if(isTimeAllowed(arr, mid, k)){
+           ans = mid;
+           j = mid - 1;
+        }else{
+          i = mid + 1;
+        }
+      }
+      return ans;
+    }
+
+    bool isTimeAllowed(vector<int>& arr, int t, int k){
+      int timeTaken = arr[0];
+      int painterCount = 1;
+
+      for(int i = 1; i < arr.size(); i++){
+        if(timeTaken + arr[i] <= t){
+          timeTaken += arr[i];
+        }else{
+          timeTaken = arr[i];
+          painterCount++;
+        }
+
+        if(painterCount > k) return false;
+      }
+
+      return true;
+    }
+};
+
 int solution(vector<int>& arr, int m){
   int n = arr.size();
   int ans = -1;
